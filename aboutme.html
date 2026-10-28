@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dhooxavierolacroix · dark glass</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body{
+  background:#0f1218;
+  color:#fff;
+  overflow-x:hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root{
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.15);
+  --text-soft: #b3b3b3;
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* BACKGROUND WEBSITE */
+.bg-video{
+  position:fixed;inset:0;width:100vw;height:100vh;z-index:-3;
+  object-fit:cover;pointer-events:none;
+  filter:brightness(0.55) grayscale(1);
+}
+
+.global-overlay{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background: rgba(10, 12, 16, 0.65);
+}
+
+/* ANIMASI REVEAL */
+.reveal{
+  opacity:0;transform:translate3d(0,30px,0);
+  transition:opacity .6s ease-out, transform .6s ease-out;
+}
+.reveal.active{opacity:1;transform:translate3d(0,0,0);}
+
+/* NAVBAR GLASS */
+.navbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 8%;
+  background:rgba(20,20,25,0.6);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  position:fixed;top:0;width:100%;z-index:1000;
+  border-bottom:1px solid var(--glass-border);
+  box-shadow:0 4px 30px rgba(0,0,0,0.4);
+}
+.logo{font-size:22px;font-weight:700;color:#ffffff;text-decoration:none;}
+.nav-links{display:flex;gap:30px}
+.nav-links a{
+  color:#b3b3b3;text-decoration:none;font-size:14px;
+  transition:color .3s;padding:6px 0;border-bottom:2px solid transparent;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:#ffffff;border-bottom-color:#ffffff;
+}
+
+/* ========================================= */
+/* HERO SECTION (BANNER ATAS)                */
+/* ========================================= */
+.hero{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  width: 100%;
+  padding-top: 70px; 
+}
+
+/* Banner Memanjang (Header) */
+.tiktok-banner {
+    width: 100%;
+    height: 350px; 
+    background-image: url('https://i.imgur.com/tgbUecd.jpeg');
+    background-size: cover;
+    background-position: center 20%; 
+    background-repeat: no-repeat;
+    position: relative;
+    will-change: transform;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+/* Container Profil (Teks di bawah banner) */
+.profile-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    margin-top: -50px; 
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background: linear-gradient(180deg, #fff 0%, #a3a3a3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.username {
+    font-size: 15px;
+    color: var(--text-soft);
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.desc {
+    font-size: 14px;
+    color: #e0e0e0;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s;
+    font-size: 18px;
+}
+.icon:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s;
+    border: 1px solid transparent;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-red { background: #fe2c55; color: #fff; }
+.btn-red:hover { background: #e0264c; }
+.btn-outline { background: rgba(255,255,255,0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+.btn-outline:hover { background: rgba(255,255,255,0.2); }
+
+/* SECTION STYLING UMUM */
+.section{padding:60px 8%;position:relative;z-index:1;max-width: 800px; margin: 0 auto;}
+.title{font-size:26px;margin-bottom:15px;font-weight:600;color:#ffffff;}
+.red{color:#b3b3b3;}
+.text{color:var(--text-soft);line-height:1.8;font-size:14px;font-weight:300}
+
+.location-card{
+  display:flex;align-items:center;gap:15px;
+  background:var(--glass-bg);
+  backdrop-filter:blur(20px);
+  padding:15px 25px;border-radius:16px;border:1px solid var(--glass-border);
+  margin-top:20px;max-width:420px;
+}
+.location-icon{
+  display:flex;justify-content:center;align-items:center;
+  font-size:22px;color:#ffffff;background:rgba(255,255,255,0.1);
+  width:45px;height:45px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);
+}
+.location-info h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:2px}
+.location-info p{font-size:12px;color:var(--text-soft)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px;}
+.card{
+  background:var(--glass-bg);
+  backdrop-filter:blur(20px);
+  padding:25px;border-radius:20px;border:1px solid var(--glass-border);
+  transition:transform .35s;position:relative;
+}
+.card:hover{transform:translateY(-5px);background:rgba(255,255,255,0.08);}
+.card h3{margin-bottom:10px;font-weight:600;font-size:18px;color:#ffffff;}
+.card .text{font-size:13px}
+
+/* ========================================= */
+/* BAGIAN CONTACT (GAMBAR KESATRIA)          */
+/* ========================================= */
+.contact-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:20px;
+    width:100%;
+}
+
+/* Gambar Kesatria (Tombol Trigger) - DIPERBESAR */
+.knight-image-container {
+    width: 100%; 
+    max-width: 350px; /* DIPERBESAR dari 250px */
+    cursor: pointer;
+    margin-bottom: 0; /* Menghilangkan jarak bawah */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    -webkit-tap-highlight-color: transparent; 
+    user-select: none; 
+    outline: none; 
+    scroll-margin-top: 100px; 
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
+}
+.knight-image-container:hover {
+    transform: scale(1.05) translateY(-5px);
+    filter: drop-shadow(0 20px 35px rgba(0,0,0,0.9));
+}
+.knight-image-container img {
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    display: block;
+    -webkit-tap-highlight-color: transparent; 
+    user-select: none; 
+    -webkit-user-drag: none; 
+}
+
+/* Form Container (Animasi Buka) */
+.form-container{
+    width:100%;
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .5s ease-out, opacity .5s ease-out, margin-top .5s ease-out;
+    opacity:0;
+    margin-top:0;
+    justify-items:center;
+    scroll-margin-top: 100px;
+}
+.form-container.show{
+    grid-template-rows:1fr;
+    opacity:1;
+    margin-top:20px;
+}
+.form-inner{overflow:hidden;width:100%;display:flex;justify-content:center;}
+
+.glass-form {
+    width: 100%; max-width: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 25px; display: flex; flex-direction: column; gap: 15px;
+    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.form-title {text-align: center; font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 5px;}
+.input-group {display: flex;flex-direction: column; gap: 5px;}
+.input-group label {font-size: 12px; color: var(--text-soft); margin-left: 5px;}
+
+.input-group input, .input-group textarea {
+    background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px; padding: 12px; font-size: 14px; color: #fff;
+    outline: none; transition: all 0.3s ease;
+}
+.input-group textarea {resize: none;height: 80px;}
+.input-group input:focus, .input-group textarea:focus {
+    border-color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.1);
+}
+
+.submit-btn {
+    background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px; padding: 12px; color: #ffffff; font-weight: 600;
+    cursor: pointer; transition: all 0.3s ease; margin-top: 5px;
+}
+.submit-btn:hover {background: rgba(255, 255, 255, 0.25);}
+
+/* RESPONSIVE WEB (HP) */
+@media(max-width:900px){
+  .tiktok-banner { height: 200px; }
+  .profile-container { padding: 0 20px; margin-top: -30px; }
+  .name{font-size:30px;}
+  .nav-links{display:none}
+  .section{padding:40px 6%;}
+  
+  .knight-image-container { 
+      max-width: 280px; /* Ukuran gambar kesatria di HP */
+  }
+}
+
+/* MODAL GLASS */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);z-index:2000;justify-content:center;align-items:center;}
+.modal.active{display:flex;}
+.modal-box{position:relative;padding:10px;max-width:90%;max-height:90vh;}
+.modal-box img{max-width:100%;max-height:80vh;border-radius:12px;display:block;}
+.close{position:absolute;top:-15px;right:-15px;background:#fff;color:#000;border:none;width:36px;height:36px;border-radius:50%;font-size:20px;font-weight:bold;cursor:pointer;}
+</style>
+</head>
+<body>
+<video autoplay loop muted playsinline class="bg-video"><source src="p.mp4" type="video/mp4"></video>
+<div class="global-overlay"></div>
+
+<nav class="navbar">
+<a href="#home" class="logo">dhooxavrlroix.</a>
+<div class="nav-links">
+<a href="#home" class="active">Home</a>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<!-- HERO / PROFIL SECTION -->
+<section id="home" class="hero">
+  
+  <div class="tiktok-banner" id="parallax-banner"></div>
+
+  <div class="profile-container">
+      <div class="profile-info">
+          <h1 class="name"><span id="type-text">dhooxavrlroix</span></h1>
+          <p class="username">@dhooxavrlroix · Full Stack Developer & Creative Designer</p>
+          <p class="desc">I create exceptional digital experiences through innovative web development and stunning design solutions.</p>
+          
+          <div class="socials">
+              <a href="https://wa.me/085817149454" target="_blank" class="icon"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://instagram.com/dhooxavieroduarte" target="_blank" class="icon"><i class="fab fa-instagram"></i></a>
+              <a href="https://tiktok.com/chaveroò" target="_blank" class="icon"><i class="fab fa-tiktok"></i></a>
+              <div class="icon" onclick="openModal()"><i class="fas fa-gamepad"></i></div>
+          </div>
+
+          <div class="actions">
+              <a href="https://instagram.com/username_anda" target="_blank" class="btn btn-red">Follow Me</a>
+              <a href="#contact" class="btn btn-outline">Contact Me</a>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- SECTION ABOUT -->
+<section id="about" class="section parallax-section">
+<h2 class="title reveal">About <span class="red">Me</span></h2>
+<p class="text reveal" style="margin-bottom:20px">nama lengkap saya muhammad al ridho putra lahir di jakarta 22 mei tahun 2010, saya tinggal di jawa timur, saya bisa beberapa bidang lain, saya menyukai beberapa bahasa asing terutama yang sedang saya pelajari adalah bahasa spanyol, hobi saya memasak, saya bersekolah di smk.</p>
+<div class="location-card reveal">
+<div class="location-icon"><i class="fas fa-map-marker-alt"></i></div>
+<div class="location-info"><h4>My Location</h4><p>Jawa timur, ngawi, paron</p></div>
+</div>
+</section>
+
+<!-- SECTION SERVICES -->
+<section id="services" class="section parallax-section">
+<h2 class="title reveal">My <span class="red">Services</span></h2>
+<div class="grid">
+<div class="card reveal"><h3>Web Development</h3><p class="text">Membangun website modern, cepat, dan responsif.</p></div>
+<div class="card reveal" style="transition-delay:.2s"><h3>UI/UX Design</h3><p class="text">Desain antarmuka yang menarik dan mudah digunakan.</p></div>
+<div class="card reveal" style="transition-delay:.4s"><h3>Creative Design</h3><p class="text">Pembuatan aset visual, logo, dan branding digital.</p></div>
+</div>
+</section>
+
+<!-- SECTION CONTACT -->
+<section id="contact" class="section parallax-section" style="padding-bottom:100px">
+<h2 class="title reveal" style="text-align:center">Contact <span class="red">Me</span></h2>
+
+<div class="contact-wrapper reveal">
+    
+    <!-- GAMBAR KESATRIA DIPERBESAR (SEBAGAI TOMBOL) -->
+    <div class="knight-image-container" id="knight-btn" onclick="toggleContactForm()">
+        <img src="https://i.imgur.com/boXVcNd.png" alt="Knight Image">
+    </div>
+
+    <!-- FORM KONTAK (Tersembunyi) -->
+    <div class="form-container" id="contact-form-container">
+        <div class="form-inner">
+            <form class="glass-form" id="contact-form" onsubmit="event.preventDefault();alert('Pesan Terkirim!');this.reset();toggleContactForm();">
+                <div class="form-title">Kirim Pesan</div>
+                
+                <div class="input-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" placeholder="Masukkan nama..." required>
+                </div>
+
+                <div class="input-group">
+                    <label>No Telepon</label>
+                    <input type="tel" placeholder="Masukkan nomor..." required>
+                </div>
+
+                <div class="input-group">
+                    <label>Pesan / Saran</label>
+                    <textarea placeholder="Tulis pesan atau saran Anda..." rows="3" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Kirim Sekarang</button>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+
+<div id="ml-modal" class="modal" onclick="closeModal(event)">
+<div class="modal-box">
+<button class="close" onclick="closeModal(event)">&times;</button>
+<img src="https://i.imgur.com/bzXMkHx.png" alt="Mobile Legends">
+</div>
+</div>
+
+<script>
+// --- FITUR PARALLAX SCROLL ---
+window.addEventListener('scroll', function() {
+    let scrollY = window.scrollY;
+
+    const parallaxSections = document.querySelectorAll('.parallax-section');
+    parallaxSections.forEach(section => {
+        let speed = 0.1; 
+        let yPos = -(scrollY * speed);
+        section.style.transform = `translateY(${yPos}px)`;
+    });
+
+    const banner = document.getElementById('parallax-banner');
+    if(banner && scrollY < 800) {
+        banner.style.transform = `translateY(${scrollY * 0.4}px)`;
+    }
+});
+
+function toggleContactForm() {
+    const formContainer = document.getElementById('contact-form-container');
+    const isShowing = formContainer.classList.contains('show');
+
+    if (isShowing) {
+        formContainer.classList.remove('show');
+        setTimeout(() => {
+            document.getElementById('knight-btn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    } else {
+        formContainer.classList.add('show');
+        setTimeout(() => {
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 350); 
+    }
+}
+
+// Typewriter Effect
+document.addEventListener("DOMContentLoaded",()=>{
+    const t="dhooxavrlroix",e=document.getElementById("type-text");
+    let i=0;
+    e.textContent = ""; 
+    (function type(){
+        if(i<t.length){e.textContent+=t.charAt(i++);setTimeout(type,100)}
+    })()
+});
+
+const observer=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('active');
+        else e.target.classList.remove('active');
+    });
+},{threshold:.1});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+function openModal(){document.getElementById('ml-modal').classList.add('active')}
+function closeModal(e){if(e.target.classList.contains('modal')||e.target.classList.contains('close'))document.getElementById('ml-modal').classList.remove('active')}
+</script>
+</body>
+</html>
